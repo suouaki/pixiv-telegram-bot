@@ -1,0 +1,16 @@
+.env
+.env.*
+.git
+.github
+.gitignore
+.dockerignore
+node_modules
+dist
+data
+temp_cache
+coverage
+*.log
+README.md
+deploy.sh
+docker-compose*.yml
+test

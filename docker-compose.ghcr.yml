@@ -1,0 +1,22 @@
+services:
+  pixiv-telegram-bot:
+    image: ${GHCR_IMAGE:?Set GHCR_IMAGE in .env}
+    container_name: pixiv_telegram_bot
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:?Set TELEGRAM_BOT_TOKEN in .env}
+      - BOT_PASSWORD=${BOT_PASSWORD:?Set BOT_PASSWORD in .env}
+      - PIXIV_COOKIE=${PIXIV_COOKIE:-}
+      - GROUP_CHAT_ID=${GROUP_CHAT_ID:-}
+      - DATA_DIR=/app/data
+      - NODE_ENV=production
+    volumes:
+      - pixiv_data:/app/data
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  pixiv_data:
